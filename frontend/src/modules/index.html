@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Rock Paper Scissors</title>
+    <link rel="stylesheet" type="text/css" href="../css/style.css">
+    <script type="module" src="./main.js">
+    </script>
+</head>
+
+
+
+<body>
+    <div id="game">
+        <!-- Heading for the game title -->
+        <h1>Rock Paper Scissors</h1>
+        <form>
+            <!-- Label for the name input field -->
+            <label for="name">Enter your name:</label>
+            <!-- Input field for entering the player's name -->
+            <input type="text" id="name" name="name">
+            <!-- Submit button for submitting the player's name -->
+            <input type="submit" value="Submit" id="submitButton">
+        </form>
+        <!-- User Choices with IMGs -->
+        <div id="choices">
+            <button class="choice" id="rock"><img src="../img/rock.png"></button>
+            <button class="choice" id="paper"><img src="../img/paper.png"></button>
+            <button class="choice" id="scissors"><img src="../img/scissors.png"></button>
+        </div>
+        <!-- Scoreboard to keep the results -->
+        <div id="scoreboard">
+            <p id="player-score">Player: 0</p>
+            <p id="computer-score">Computer: 0</p>
+        </div>
+        <p id="result"></p>
+        <!-- Highscore list -->
+        <div id="highscore">
+            <h2>Highscores</h2>
+            <li id="highscore-list"></li>
+        </div>
+    </div>
+
+    <!-- Highscore list that is always visible -->
+    <div id="highscore-container">
+        <h2>Highscores</h2>
+    </div>
+
+</body>
+</html>
