@@ -1,0 +1,110 @@
+body {
+	background-color: #f1f1f1;
+}
+
+/* Styling for the game container */
+#game {
+	width: 600px;
+	margin: 0 auto;
+	background-color: #fff;
+	padding: 20px;
+	border-radius: 10px;
+	box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+}
+
+h1 {
+	text-align: center;
+}
+/*Centers the form */
+form {
+	text-align: center;
+	margin-bottom: 20px;
+}
+
+label {
+	font-size: 20px;
+}
+/* Styling for the text input in the form */
+input[type="text"] {
+	font-size: 20px;
+	padding: 5px;
+	border-radius: 5px;
+	border: none;
+	box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
+}
+/* Styling for the submitbutton in the form */
+input[type="submit"] {
+	font-size: 20px;
+	padding: 5px 10px;
+	border-radius: 5px;
+	border: none;
+	background-color: #4CAF50;
+	color: #fff;
+	cursor: pointer;
+	box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
+}
+/* Styling for the user choicer, put them in flex, centers it */
+#choices {
+	display: flex;
+	justify-content: center;
+	margin-bottom: 20px;
+}
+/* Set the background color and other styles of the choice buttons */
+.choice {
+	background-color: #f1f1f1; 
+	border-radius: 10px;
+	padding: 20px;
+	margin: 0 10px;
+	border: none;
+	box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+	cursor: pointer;
+}
+.choice img{
+	max-height: 40px;
+}
+
+.choice:hover {
+	background-color: #d1d1d1;
+}
+
+#result {
+	font-size: 30px;
+	text-align: center;
+	margin-top: 20px;
+}
+
+#scoreboard {
+	display: flex;
+	justify-content: space-between;
+	font-size: 20px;
+	font-weight: bold;
+	margin-bottom: 20px;
+}
+
+#highscore h2 {
+	display: flex;
+	justify-content: center;
+	
+}
+#highscore-list {
+	list-style: none;
+	display: block;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #fff;
+    padding: 10px 20px;
+    margin: 10px 0;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+	counter-reset: highscore-counter; /* Initialize the counter */
+	text-decoration: underline;
+	font-weight: bold;
+
+}
+#highscore-list li::before {
+    content: counter(highscore-counter); /* Use a counter for numbering */
+    counter-increment: highscore-counter; /* Increment the counter for each player */
+    margin-right: 230px; /* Add spacing between the number and player name */
+    font-weight: bold;
+	
+}
