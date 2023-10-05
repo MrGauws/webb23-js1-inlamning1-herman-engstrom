@@ -22,20 +22,21 @@ const highscoreList = document.getElementById('highscore-list');
 // ************************** FUNCTIONS ************************** //
 
 // Updated playRound function
-function playRound(playerSelection) {
+async function playRound(playerSelection) {
     const computerSelection = computerPlay();
     const winner = getWinner(playerSelection, computerSelection);
 
     if (winner === "player") {
         playerScore++;
     } else if (winner === "computer") {
-        playerScore = 0; // Reset player's score if computer wins
+        // Skicka resultatet till backend när datorn vinner
+        await postPlayerData(playerName, playerScore);
+        playerScore = 0; // Återställ spelarens poäng om datorn vinner
     }
 
-    handleWin(winner, playerSelection, computerSelection); // Sends playerSelection and computerSelection
+    handleWin(winner, playerSelection, computerSelection);
 }
 
-// Updated handleWin function to receive playerSelection and computerSelection
 function handleWin(winner, playerSelection, computerSelection) {
     resultText.textContent = `Round ${roundNumber}: ${playerName} chose ${playerSelection}, Computer chose ${computerSelection}. `;
 
@@ -43,6 +44,7 @@ function handleWin(winner, playerSelection, computerSelection) {
         resultText.textContent += `${playerName} wins! ${playerSelection} beats ${computerSelection}`;
     } else if (winner === "computer") {
         resultText.textContent += `Computer wins! ${computerSelection} beats ${playerSelection}`;
+        roundNumber = 1; // Nollställ roundNumber när datorn vinner
     } else {
         resultText.textContent += `It's a tie! You both chose ${playerSelection}`;
     }
@@ -50,17 +52,18 @@ function handleWin(winner, playerSelection, computerSelection) {
     updateScoreboard();
 
     if (playerScore >= 3) {
-        // Player wins the game, continue playing
         resultText.textContent = `Congratulations, ${playerName}! You won the game!`;
-        postPlayerData(playerName, playerScore); // Call the function to update highscore
+        postPlayerData(playerName, playerScore);
     } else if (computerScore >= 3) {
-        // Computer wins, restart the game
         resultText.textContent += ` Better luck next time.`;
         updateScoreboard();
-        postPlayerData(playerName, playerScore); // Call the function to update highscore
-        playerScore = 0; // Reset player's score
-        roundNumber = 1; // Reset round number
+        postPlayerData(playerName, playerScore);
+        playerScore = 0;
+        roundNumber = 1;
     }
+
+    // Uppdatera highscore-listan oavsett om spelaren eller datorn vinner
+    updateHighscoreList();
 
     roundNumber++;
 }
